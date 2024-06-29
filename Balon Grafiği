@@ -1,0 +1,22 @@
+from google.colab import drive
+drive.mount('/content/drive')
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+from matplotlib.colors import ListedColormap
+file_path = '/content/drive/My Drive/excel/balon.xlsx'
+data = pd.read_excel(file_path)
+print(data.head())
+plt.figure(figsize=(12, 6))
+azot = data['Toplam AZOT(N)']
+fosfor = data['Toplam FOSFOR (P2O5)']
+potasyum = data['Toplam POTAS (K2O)']
+sizes = data['Toplam AZOT(N)']
+plt.scatter(azot, fosfor, s=sizes, c=potasyum, cmap='viridis', alpha=0.6, edgecolors='w', linewidth=0.5)
+plt.xlabel('Toplam AZOT(N)')
+plt.ylabel('Toplam FOSFOR (P2O5)')
+plt.colorbar(label='Toplam Potasyum (K)')
+plt.title('Azot, Fosfor ve Potasyum İlişkisi')
+plt.grid(True)
+plt.tight_layout()
+plt.show()
